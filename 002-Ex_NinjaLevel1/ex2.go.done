@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+
+var x int
+var y string
+var z bool
+
+func main() {
+	fmt.Println(x)
+	fmt.Println(y)
+	fmt.Println(z)
+
+	fmt.Println("The values are called zeros values")
+	fmt.Println("EX 3")
+	x = 42
+	y = "James Bond"
+	z = true
+	s := fmt.Sprintf("%v, %s, %t \n", x, y, z)
+	fmt.Println(s)
+}

@@ -14,14 +14,12 @@ func main() {
     var card string = "Ace of spades"
     // Inférence de type, Go détermine le type avec l'asignation (nom + assignation)
     var card = "Ace of spades"
-    // Inférence mais courte. Utilisé uniquement lors de déclaration de nouvelles variables. 
+    // Inférence mais courte. Utilisé uniquement lors de déclaration de nouvelles variables.
     card := "Ace of spades"
 	fmt.Println(card)
 }
 
 ```
-
-
 
 ## Les types en go
 
@@ -31,6 +29,19 @@ func main() {
 - **string:** Chaine de caractère
 - **int:** un entier
 - **float64:** nombre à virgule
+
+### Zero value type
+
+Lorsque l'on créé une variable sans assignation, on doit préciser son type. Go va alors assigner une "zero value" à cette variable soit une valeur par défaut.
+
+| Type   | Zero Value       |
+| ------ | ---------------- |
+| string | "" (chaine vide) |
+| int    | 0                |
+| float  | 0                |
+| bool   | false            |
+
+Dans le cas d'une struct composée de plusieurs propriétés, chaque propriété reçoivent la zero value de son type respectif
 
 ## Déclaration de function
 
@@ -60,7 +71,7 @@ func newCard() string {
 | ------ | ------------------------------------------- | ------------------------------------------- |
 | Taille | Taille fixe d'une liste de "chose"          | Tableau qui peut grandir et rétrécir        |
 | Typage | Tous les éléments doivent être du même type | Tous les éléments doivent être du même type |
-|        |                                             |                                             |
+| Usage  | Rarement utilisé directement                | Utilisé dans 99% des cas                    |
 |        |                                             |                                             |
 
 ```go
@@ -91,11 +102,12 @@ func newCard() string {
 
 ## Approche orienté objet vs approche de go
 
-Go n'est pas un language de programmation orienté objet. Il a sa propre façon d'aborder le problème. 
+Go n'est pas un language de programmation orienté objet. Il a sa propre façon d'aborder le problème.
 
-L'idée est de prendre un type "basique" (string, integer, float, map...) et d'étendre ses fonctionnalités. 
+L'idée est de prendre un type "basique" (string, integer, float, map...) et d'étendre ses fonctionnalités.
 
 deck.go
+
 ```go
 package main
 
@@ -118,6 +130,7 @@ func (d deck) print() {
 ```
 
 main.go
+
 ```go
 package main
 
@@ -141,6 +154,7 @@ func newCard() string {
 ### Créer un nouveau deck (constructeur en quelque sorte)
 
 deck.go
+
 ```go
 package main
 
@@ -176,8 +190,8 @@ func (d deck) print() {
 
 ```
 
-
 main.go
+
 ```go
 package main
 
@@ -192,6 +206,7 @@ func main() {
 ## Slice range syntax
 
 Les slices sont zero based syntax.
+
 ```go
 fruit := []string{"apple", "banana", "grappe", "orange"}
 
@@ -202,6 +217,7 @@ fruit[2:] // grappe et orange
 ```
 
 Exemple avec le deck. Deal function
+
 ```go
 // Deal, split a deck depending of the handsize
 func deal(d deck, handSize int) (deck, deck) {
@@ -228,11 +244,10 @@ fmt.Println([]byte(myString))
 // Output [72 105 32 116 104 101 114 101]
 ```
 
-
 ## Test avec go
 
-Go testing n'utilise pas de framework. On dispose en revanche d'une petite lib native. 
+Go testing n'utilise pas de framework. On dispose en revanche d'une petite lib native.
 
-Il suffit de créer un fichier se terminant par _test.go
+Il suffit de créer un fichier se terminant par \_test.go
 
 Pour lancer les tests go test

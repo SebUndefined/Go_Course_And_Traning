@@ -262,7 +262,7 @@ En mémoire, cela sera stocké (à peu près) comme ça.
 
 Lorsque l'on passe notre slice dans une fonction, on passe le slice qui pointe vers le tableau. On va donc modifier le slice en direct...
 
-| Address | Value                        |
+| Address | Value                        | Location            |
 | ------- | ---------------------------- | ------------------- |
 | 0000    | length, cap, pointer to head | slice dans main     |
 | 0001    | Actual array                 | array des slices    |

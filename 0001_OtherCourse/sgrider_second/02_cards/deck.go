@@ -50,6 +50,7 @@ func (d deck) print() {
 	}
 }
 
+// Pas de receiver car ambigue
 // Deal, split a deck depending of the handsize
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]

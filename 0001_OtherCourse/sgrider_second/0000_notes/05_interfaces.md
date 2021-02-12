@@ -136,7 +136,7 @@ func main() {
 }
 ```
 
-Dans ce cas de figure, on peut remarquer que l'on affiche pas le body de la requête. On peut néanmoins remarquer que le type de retour est un pointer vers un objet de type Response... 
+Dans ce cas de figure, on peut remarquer que l'on affiche pas le body de la requête. On peut néanmoins remarquer que le type de retour est un pointer vers un objet de type io.ReadCloser... 
 
 ```go
 Body io.ReadCloser

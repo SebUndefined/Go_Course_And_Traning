@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -21,8 +22,16 @@ func main() {
 		// On check le lien et on passe le channel en paramètre
 		go checkLink(link, c)
 	}
-	// Attendre une valeur et la logger immédiatement
-	fmt.Println(<-c)
+	// Equivalent à ce qu'il y a au dessus.
+	// On dit "attend le channel et dès que tu as une valeur
+	// Lance une nouvelle goroutine de la fonction litteral
+	for l := range c {
+		// Invoquer que fonction litteral
+		go func(link string) {
+			time.Sleep(5 * time.Second)
+			checkLink(link, c)
+		}(l)
+	}
 }
 
 func checkLink(link string, c chan string) {
@@ -31,12 +40,12 @@ func checkLink(link string, c chan string) {
 	// S'il y a une erreur, on affiche que le site est probablement down
 	if err != nil {
 		fmt.Println(link, " might be down")
-		// Envoyer un message au channel
-		c <- "Might be down I think"
+		// Renvoyer le lien au channel
+		c <- link
 		return
 	}
 	// Sinon, on affiche que le site est up
 	fmt.Println(link, " is up")
-	// Envoyer un message au channel
-	c <- "Yep it's up !"
+	// Renvoyer le lien au channel
+	c <- link
 }
